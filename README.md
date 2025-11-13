@@ -4,4 +4,4 @@
 Этот репозиторий является каркасом для будущего веб-приложения.
 
 ## Ссылки
-- [Публичная страница на GitHub Pages](https:/koz0chka.github.io/DPO_AAS/)
+- [Публичная страница на GitHub Pages](https://koz0chka.github.io/DPO-AAS/)
