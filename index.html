@@ -1,59 +1,901 @@
 <!DOCTYPE html>
-<html lang="ru">
+<html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Мой сайт</title>
-<link rel="icon" href="assets/favicon.ico" type="image/x-icon">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Revo Coffee - Personalized Coffee</title>
+
+    <!-- Подключение шрифтов -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@900&family=Nunito:ital,wght@0,300;0,400;0,600;0,700;1,300&display=swap" rel="stylesheet">
+    
+    <!-- CSS стили -->
+    <style>
+        /* Сбрасываем стили */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        /* Базовый стиль */
+        body {
+            color: #151D28;
+            line-height: 1.6;
+            background-color: #F5F5E8;
+            font-family: 'Nunito', sans-serif;
+            font-weight: 400;
+            font-size: 16px;
+            line-height: 20px;
+        }
+        
+        /* Стандартный стиль контейнера */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+ 
+        /* Задание абсолютного позиционирования */
+        header {
+            position: relative;
+            height: 100vh;
+            display: flex;
+            overflow: hidden;
+        }
+        
+        /* Позиция фотографии в Секции 1 */
+        .header-background {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 1;
+        }
+        
+        .header-background img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            object-position: center;
+        }
+        
+        /* Создание цветных плашек через псевдоэлементы CSS */
+        header::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 0;
+            width: 25%;
+            height: 100%;
+            background-color: white;
+            z-index: 2;
+        }
+        
+        header::after {
+            content: '';
+            position: absolute;
+            right: 0;
+            top: 0;
+            width: 25%;
+            height: 100%;
+            background-color: #415167;
+            z-index: 2;
+        }
+        
+        /* Создаём поверх плашек контент для заполнения элементами (Секция 0) */
+        .header-content {
+            display: flex;
+            width: 100%;
+            position: relative;
+            z-index: 3;
+        }
+        
+        /* Стиль левого контейнера (Секция 0) */
+        .left-content {
+            flex: 0 0 25%;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            padding: 40px 60px;
+        }
+        
+        /* Стиль правого контейнера (Секция 0) */
+        .right-content {
+            flex: 0 0 25%;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            padding: 40px 60px;
+            align-items: center;
+            position: relative;
+        }
+        
+        /* Создание пустого пространства между двумя контейнерами (Секция 0) */
+        .banner-center {
+            flex: 1;
+        }
+ 
+        /* Стиль изображения логотипа (Секция 0) */
+        .logo-img {
+            width: 150px;
+        }
+        
+        /* Стиль лозунга (Секция 0) */
+        .personalized {
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 900;
+            font-size: 54px;
+            line-height: 70px;
+            color: #151D28;
+        }
+        
+        /* Стиль заднего фона слова PERSONALIZED (Секция 0) */
+        .personalized-bg {
+            background-color: #C7A17A;
+            color: white;
+            padding: 5px 10px;
+            display: inline-block;
+        }
+        
+        /* Стиль расположения списка навигации (Секция 0) */
+        .nav-links {
+            display: flex;
+            flex-direction: column;
+            gap: 25px;
+            margin-top: 0;
+        }
+        
+        /* Стиль списка навигации (Секция 0) */
+        .nav-links a {
+            text-decoration: none;
+            color: white;
+            font-weight: 700;
+            font-size: 24px;
+            text-align: center;
+        }
+
+        /* Стиль расположения иконки тележки (Секция 0) */
+        .cart-icon-large {
+            width: 50px;
+            height: 50px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: absolute;
+            top: 40px;
+            left: 40px;
+        }
+        
+        /* Стиль иконки тележки (Секция 0) */
+        .cart-icon-large img {
+            width: 30px;
+            height: 30px;
+            filter: brightness(0) invert(1);
+        }
+
+        /* Стиль секции особенностей (Секция 1) */
+        .build-section {
+            padding: 80px 0;
+            background-color: #F5F5E8;
+        }
+        
+        /* Стиль расположения заглавного текста особенностей (Секция 1) */
+        .section-title {
+            text-align: center;
+            margin-bottom: 50px;
+        }
+        
+        /* Стиль описание заглавного текста / лозунг секции особенностей (Секция 1) */
+        .section-title h2 {
+            font-family: 'Nunito', sans-serif;
+            font-weight: 600;
+            font-size: 14px;
+            color: #C7A17A;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin-bottom: 10px;
+        }
+        
+        /* Стиль заглавного текста секции особенностей (Секция 1) */
+        .section-title h1 {
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 900;
+            font-size: 30px;
+            line-height: 34px;
+            color: #151D28;
+        }
+        
+        /* Стиль матрицы особенностей (Секция 1) */
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 40px;
+        }
+        
+        /* Стиль карточки (блока) особенности (Секция 1) */
+        .feature-card {
+            text-align: center;
+            padding: 20px;
+        }
+        
+        /* Стиль расположения иконки особенности (Секция 1) */
+        .feature-icon {
+            width: 100px;
+            height: 100px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 20px;
+        }
+        
+        /* Стиль иконки особенности (Секция 1) */
+        .feature-icon img {
+            width: 80px;
+            height: 80px;
+        }
+        
+        /* Стиль заглавного текста особенности (Секция 1) */
+        .feature-card h3 {
+            margin-bottom: 15px;
+            font-family: 'Nunito', sans-serif;
+            font-weight: 700;
+            font-size: 24px;
+            line-height: 24px;
+            color: #151D28;
+        }
+        
+        /* Стиль описания особенности (Секция 1) */
+        .feature-card p {
+            color: #666;
+            line-height: 1.6;
+        }
+
+        /* Общий стиль (Секция 2) */
+        .favorite-section {
+            padding: 80px 0;
+            position: relative;
+            background-color: #EDF0F5;
+            min-height: 800px;
+            display: flex;
+            align-items: center;
+        }
+        
+        /* Синяя плашка как псевдоэлемент (Секция 2) */
+        .favorite-section::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 0;
+            width: 20%;
+            height: 100%;
+            background-color: #415167;
+            z-index: 1;
+        }
+        
+        /* Стиль матрицы продуктов (Секция 2) */
+        .products-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 40px;
+            position: relative;
+            z-index: 2;
+            width: 100%;
+        }
+        
+        /* Стиль карточки продукта (Секция 2) */
+        .product-card {
+            display: flex;
+            gap: 30px;
+            align-items: center;
+            background-color: white;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+        }
+        
+        /* Стиль расположения изображения продукта (Секция 2) */
+        .product-image {
+            width: 200px;
+            height: 200px;
+            flex-shrink: 0;
+        }
+        
+        /* Стиль изображения продукта (Секция 2) */
+        .product-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            background-color: #EDF0F5;
+        }
+        
+        /* Стиль информации о продукте (Секция 2) */
+        .product-info {
+            flex: 1;
+        }
+        
+        /* Стиль цены продукта (Секция 2) */
+        .product-price {
+            font-family: 'Nunito', sans-serif;
+            font-weight: 600;
+            font-size: 20px;
+            line-height: 24px;
+            color: #C7A17A;
+            margin-bottom: 10px;
+        }
+        
+        /* Стиль названия продукта (Секция 2) */
+        .product-name {
+            font-family: 'Nunito', sans-serif;
+            font-weight: 700;
+            font-size: 24px;
+            line-height: 28px;
+            margin-bottom: 10px;
+            color: #151D28;
+        }
+        
+        /* Стиль описания продукта (Секция 2) */
+        .product-flavor {
+            color: #666;
+            font-style: italic;
+            margin-bottom: 20px;
+        }
+        
+        /* Стиль кнопок (Секция 2/3) */
+        .product-actions {
+            display: flex;
+            gap: 15px;
+        }
+        
+        /* Стиль кнопки BUY NOW (Секция 2/3) */
+        .btn {
+            padding: 10px 20px;
+            background-color: #C7A17A;
+            color: white;
+            text-decoration: none;
+            border-radius: 4px;
+            font-family: 'Nunito', sans-serif;
+            font-weight: 700;
+            font-size: 16px;
+            line-height: 20px;
+        }
+        
+        /* Стиль кнопки DETAILS (Секция 2/3) */
+        .btn-outline {
+            background-color: transparent;
+            border: 2px solid #C7A17A;
+            color: #C7A17A;
+        }
+
+        /* Стиль заднего фона Гифтсета (Секция 3) */
+        .giftset-section {
+            padding: 80px 0;
+            background-color: #F5F5E8;
+        }
+        
+        /* Стиль верхнего текста Гифтсета (Секция 3) */
+        .giftset-header {
+            text-align: center;
+            margin-bottom: 50px;
+        }
+        
+        /* Стиль подписи/слогана Гифтсета (Секция 3) */
+        .giftset-subtitle {
+            font-family: 'Nunito', sans-serif;
+            font-weight: 600;
+            font-size: 14px;
+            color: #C7A17A;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin-bottom: 10px;
+        }
+        
+        /* Стиль заглавной надписи Гифтсета (Секция 3) */
+        .giftset-title {
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 900;
+            font-size: 30px;
+            line-height: 34px;
+            margin-bottom: 20px;
+            color: #151D28;
+        }
+        
+        /* Стиль контейнера Гифтсета (Секция 3) */
+        .giftset-container {
+            display: flex;
+            gap: 50px;
+            align-items: center;
+        }
+        
+        /* Гибкое масштабирование/растягивание изображения Гифтсета (Секция 3) */
+        .giftset-image {
+            flex: 1;
+        }
+        
+        /* Стиль расположения изображения Гифтсета (Секция 3) */
+        .giftset-img {
+            width: 100%;
+            height: 400px;
+            border-radius: 8px;
+            overflow: hidden;
+        }
+        
+        /* Стиль изображения Гифтсета (Секция 3) */
+        .giftset-img img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        
+        /* Стиль наполнения Гифтсета (Секция 3) */
+        .giftset-content {
+            flex: 1;
+        }
+        
+        /* Стиль цены Гифтсета (Секция 3) */
+        .giftset-price {
+            font-family: 'Nunito', sans-serif;
+            font-weight: 600;
+            font-size: 20px;
+            line-height: 24px;
+            color: #C7A17A;
+            margin-bottom: 20px;
+        }
+        
+        /* Стиль описания Гифтсета (Секция 3) */
+        .giftset-description {
+            color: #666;
+            line-height: 1.8;
+            margin-bottom: 30px;
+        }
+        
+        /* Стиль для всех характеристик (Секция 3) */
+        .giftset-features {
+            display: flex;
+            gap: 30px;
+            margin-bottom: 30px;
+        }
+        
+        /* Стиль одной характеристики (Секция 3) */
+        .giftset-feature {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+        
+        /* Стиль иконок для особенностей (Секция 3) */
+        .feature-icon-small {
+            width: 50px;
+            height: 50px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        /* Стиль иконок (Секция 3) */
+        .feature-icon-small img {
+            width: 30px;
+            height: 30px;
+        }
+        
+        /* Заглавный стиль описания особенностей (Секция 3) */
+        .feature-text h4 {
+            font-family: 'Nunito', sans-serif;
+            font-weight: 700;
+            font-size: 16px;
+            line-height: 20px;
+            margin-bottom: 5px;
+            color: #151D28;
+        }
+        
+        /* Стиль описания особенностей (Секция 3) */
+        .feature-text p {
+            color: #666;
+            font-size: 14px;
+        }
+
+        /* Блоки товаров (Секция 4) */
+        .combo-section {
+            padding: 80px 0;
+            position: relative;
+            background-color: #EDF0F5;
+            min-height: 800px;
+            display: flex;
+            align-items: center;
+        }
+        
+        /* Синяя плашка как псевдоэлемент (Секция 4) */
+        .combo-section::before {
+            content: '';
+            position: absolute;
+            right: 0;
+            top: 0;
+            width: 20%;
+            height: 100%;
+            background-color: #415167;
+            z-index: 1;
+        }
+        
+        /* Матрица для блоков товаров (Секция 4) */
+        .combo-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 30px;
+            position: relative;
+            z-index: 2;
+            width: 100%;
+        }
+        
+        /* Блок товара (Секция 4) */
+        .combo-card {
+            text-align: center;
+            padding: 0;
+            border-radius: 8px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+            background-color: white;
+            overflow: hidden;
+        }
+        
+        /* Блок с изображением товара (Секция 4) */
+        .combo-image {
+            width: 100%;
+            height: 250px;
+            margin-bottom: 0;
+            overflow: hidden;
+            border-radius: 8px 8px 0 0;
+            background-color: #EDF0F5;
+        }
+        
+        /* Изображение в блоке товара (Секция 4) */
+        .combo-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+            padding: 10px;
+        }
+        
+        /* Ячейки товаров (Секция 4) */
+        .combo-content {
+            padding: 20px;
+        }
+        
+        /* Ячейка цены */
+        .combo-price {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 15px;
+        }
+
+        /* Стиль обычной (текущей) цены */
+        .current-price {
+            font-family: 'Nunito', sans-serif;
+            font-weight: 600;
+            font-size: 20px;
+            line-height: 24px;
+            color: #C7A17A;
+        }
+        
+        /* Стиль перечёркнутой (старой) цены */
+        .old-price {
+            font-size: 16px;
+            color: #999;
+            text-decoration: line-through;
+        }
+        
+        /* Стиль заглавного названия товара (Секция 4) */
+        .combo-name {
+            font-family: 'Nunito', sans-serif;
+            font-weight: 700;
+            font-size: 24px;
+            line-height: 28px;
+            margin-bottom: 15px;
+            color: #151D28;
+        }
+
+        /* Стиль описания товара (Секция 4) */
+        .combo-description {
+            color: #666;
+            line-height: 1.6;
+            margin-bottom: 20px;
+            font-size: 14px;
+        }
+
+        /* Нижняя плашка */
+        footer {
+            background-color: #EDF0F5;
+            color: #666;
+            text-align: center;
+            padding: 30px 0;
+        }
+    </style>
 </head>
 <body>
-<header>
-<div>
-<h1>МойСайт</h1>
-</div>
-<nav>
-<ul>
-<li><a href="#home">Главная</a></li>
-<li><a href="#about">О нас</a></li>
-<li><a href="#services">Услуги</a></li>
-<li><a href="#contact">Контакты</a></li>
-</ul>
-</nav>
-</header>
-<main>
-<section id="home">
-<h2>Добро пожаловать!</h2>
-<p>Это главная страница нашего веб-приложения.</p>
-</section>
-<section id="about">
-<h2>О нас</h2>
-<p>Мы компания, которая занимается созданием качественных веб-решений.
-</p>
-</section>
-<section id="services">
-<h2>Наши услуги</h2>
-<ul>
-<li>Веб-разработка</li>
-<li>Дизайн</li>
-<li>Консультации</li>
-</ul>
-</section>
-<section id="projects">
-<h2>Наши проекты</h2>
-<ul>
-<li> <a href="https://github.com/Koz0chka/TextusCognoscereAndroid" target="_blank">TextusCognoscereAndroid</a> - Практика второго курса</li>
-<li> <a href="https://github.com/Koz0chka/.config" target="_blank">.config</a> - Дотфайлы hyprland</li>
-<li> <a href="https://github.com/Koz0chka/DPO-AAS" target="_blank">DPO-AAS</a> - Практика ДПО</li>
-</ul>
-</section>
-<section id="contact">
-<h2>Контакты</h2>
-<p>Email: info@example.com</p>
-<p>Телефон: +7 (123) 456-78-90</p>
-</section>
-</main>
-<footer>
-<p>&copy; 2025 Сайт. Все права защищены.</p>
-</footer>
+    <!-- Header Section -->
+    <header>
+        <!-- Слой 1: Задник -->
+        <div class="header-background">
+            <img src="assets/img/Баннер.png" alt="Coffee Background">
+        </div>
+        
+        <!-- Слой 2: Контент -->
+        <div class="header-content">
+            <div class="left-content"> <!-- Левая плашка первой секции -->
+                <img src="assets/img/LOGO.png" alt="Revo Coffee" class="logo-img">
+                <div class="personalized">
+                    <div>YOUR</div>
+                    <div><span class="personalized-bg">PERSONALIZED</span></div>
+                    <div>COFFEE</div>
+                </div>
+            </div>
+            
+            <!-- Пустое пространство между контейнерами -->
+            <div class="banner-center"></div>
+            
+            <div class="right-content">
+                <div class="cart-icon-large"> <!-- Правая плашка первой секции -->
+                    <img src="assets/icons/shopping-cart-3.png" alt="Shopping Cart">
+                </div>
+                <div class="nav-links">
+                    <a href="#">COFFEE</a>
+                    <a href="#">GIFTSET</a>
+                    <a href="#">CONTACT</a>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Build Your Base Section -->
+    <section class="build-section">
+        <div class="container">
+            <div class="section-title">
+                <h2>Your Personalized Coffee</h2>
+                <h1>BUILD YOUR DREAM COFFEE</h1>
+            </div>
+            
+            <div class="features-grid">
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <img src="assets/icons/ic.png" alt="Origin Icon">
+                    </div>
+                    <h3>Origin</h3>
+                    <p>Arabica and Robusta coffee beans that meet quality standards.</p>
+                </div>
+                
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <img src="assets/icons/IC%20(1).png" alt="Quality Icon">
+                    </div>
+                    <h3>Quality</h3>
+                    <p>Each coffee bean is a process of intense focus by coffee artisans.</p>
+                </div>
+                
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <img src="assets/icons/IC%20(2).png" alt="Bean Types Icon">
+                    </div>
+                    <h3>Bean Types</h3>
+                    <p>70% of coffee cup quality comes from origin and green bean quality.</p>
+                </div>
+                
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <img src="assets/icons/IC%20(3).png" alt="Brewing Icon">
+                    </div>
+                    <h3>Brewing</h3>
+                    <p>Coffee beans are transformed through strict roasting process.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Choose Your Favorite Section -->
+    <section class="favorite-section">
+        <div class="container">
+            <div class="section-title">
+                <h2>Choose Your Favorite</h2>
+                <h1>STANDARD TASTE — RIGHT FLAVOR</h1>
+            </div>
+            
+            <div class="products-grid">
+                <!-- Product 1.1 -->
+                <div class="product-card">
+                    <div class="product-image">
+                        <img src="assets/img/IMAGE.png" alt="REVO Morning">
+                    </div>
+                    <div class="product-info">
+                        <div class="product-price">99.000</div>
+                        <div class="product-name">REVO Morning</div>
+                        <div class="product-flavor">bitter, sweet aftertaste, floral aroma</div>
+                        <div class="product-actions">
+                            <a href="#" class="btn">BUY NOW</a>
+                            <a href="#" class="btn btn-outline">DETAILS</a>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Product 1.2 -->
+                <div class="product-card">
+                    <div class="product-image">
+                        <img src="assets/img/IMAGE%20(2).png" alt="REVO Everyday">
+                    </div>
+                    <div class="product-info">
+                        <div class="product-price">85.000</div>
+                        <div class="product-name">REVO Everyday</div>
+                        <div class="product-flavor">balanced, bitter aftertaste, chocolate flavor</div>
+                        <div class="product-actions">
+                            <a href="#" class="btn">BUY NOW</a>
+                            <a href="#" class="btn btn-outline">DETAILS</a>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Product 2.1 -->
+                <div class="product-card">
+                    <div class="product-image">
+                        <img src="assets/img/image%20(1).png" alt="REVO Origin">
+                    </div>
+                    <div class="product-info">
+                        <div class="product-price">139.000</div>
+                        <div class="product-name">REVO Origin</div>
+                        <div class="product-flavor">sweet aftertaste, less bitter, strawberry sour taste</div>
+                        <div class="product-actions">
+                            <a href="#" class="btn">BUY NOW</a>
+                            <a href="#" class="btn btn-outline">DETAILS</a>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Product 2.2 -->
+                <div class="product-card">
+                    <div class="product-image">
+                        <img src="assets/img/IMAGE%20(3).png" alt="REVO Bold">
+                    </div>
+                    <div class="product-info">
+                        <div class="product-price">75.000</div>
+                        <div class="product-name">REVO Bold</div>
+                        <div class="product-flavor">rich, bitter, traditional</div>
+                        <div class="product-actions">
+                            <a href="#" class="btn">BUY NOW</a>
+                            <a href="#" class="btn btn-outline">DETAILS</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Giftset Section -->
+    <section class="giftset-section">
+        <div class="container">
+            <div class="giftset-header">
+                <div class="giftset-subtitle">Best Gift For Best Friend</div>
+                <h2 class="giftset-title">GIFTSET</h2>
+            </div>
+            
+            <div class="giftset-container">
+                <div class="giftset-image">
+                    <div class="giftset-img">
+                        <img src="assets/img/pr-0018-r.png" alt="Giftset Vietnamese Phin Coffee">
+                    </div>
+                </div>
+                <div class="giftset-content">
+                    <div class="giftset-price">285.000</div>
+                    <div class="giftset-description">
+                        <p>Giftset «Vietnamese Phin Coffee» — The perfect gift for coffee connoisseurs. Coffee beans are carefully selected by Revo, roasted and ground using technology and secrets learned from famous artisans, along with the love and passion of coffee makers, creating pure cups of coffee made just for you.</p>
+                    </div>
+                    <div class="giftset-features">
+                        <div class="giftset-feature">
+                            <div class="feature-icon-small">
+                                <img src="assets/icons/IC_coffee.png" alt="Coffee Bean Icon">
+                            </div>
+                            <div class="feature-text">
+                                <h4>Bean Type</h4>
+                                <p>Fine Robusta Blend</p>
+                            </div>
+                        </div>
+                        <div class="giftset-feature">
+                            <div class="feature-icon-small">
+                                <img src="assets/icons/IC_Mountain.png" alt="Mountain Icon">
+                            </div>
+                            <div class="feature-text">
+                                <h4>Altitude</h4>
+                                <p>700–800 m</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="product-actions">
+                        <a href="#" class="btn">BUY NOW</a>
+                        <a href="#" class="btn btn-outline">DETAILS</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Combo Section -->
+    <section class="combo-section">
+        <div class="container">
+            <div class="section-title">
+                <h2>Your Personalized Coffee</h2>
+                <h1>COMBO PHIN COFFEE</h1>
+            </div>
+            
+            <div class="combo-grid">
+                <!-- Combo 1 -->
+                <div class="combo-card">
+                    <div class="combo-image">
+                        <img src="assets/img/image%20(6).png" alt="Combo Revo Bold">
+                    </div>
+                    <div class="combo-content">
+                        <div class="combo-price">
+                            <span class="current-price">147.000</span>
+                            <span class="old-price">155.000</span>
+                        </div>
+                        <div class="combo-name">Combo Revo Bold</div>
+                        <div class="combo-description">
+                            The caffeine content in Revo Bold is strong enough to keep you alert for work
+                        </div>
+                        <div class="product-actions">
+                            <a href="#" class="btn">BUY NOW</a>
+                            <a href="#" class="btn btn-outline">DETAILS</a>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Combo 2 -->
+                <div class="combo-card">
+                    <div class="combo-image">
+                        <img src="assets/img/image%20(7).png" alt="Combo Revo Everyday">
+                    </div>
+                    <div class="combo-content">
+                        <div class="combo-price">
+                            <span class="current-price">156.000</span>
+                            <span class="old-price">165.000</span>
+                        </div>
+                        <div class="combo-name">Combo Revo Everyday</div>
+                        <div class="combo-description">
+                            Revo Everyday is blended between the bitterness of Robusta beans and the aroma
+                        </div>
+                        <div class="product-actions">
+                            <a href="#" class="btn">BUY NOW</a>
+                            <a href="#" class="btn btn-outline">DETAILS</a>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Combo 3 -->
+                <div class="combo-card">
+                    <div class="combo-image">
+                        <img src="assets/img/image%20(8).png" alt="Combo Revo Honey">
+                    </div>
+                    <div class="combo-content">
+                        <div class="combo-price">
+                            <span class="current-price">275.000</span>
+                            <span class="old-price">260.000</span>
+                        </div>
+                        <div class="combo-name">Combo Revo Honey</div>
+                        <div class="combo-description">
+                            Honey — in the name Revo Honey comes from the processing method of Arabica beans
+                        </div>
+                        <div class="product-actions">
+                            <a href="#" class="btn">BUY NOW</a>
+                            <a href="#" class="btn btn-outline">DETAILS</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <p>© Revo Coffee Vietnam — 2018</p>
+        </div>
+    </footer>
 </body>
 </html>
