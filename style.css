@@ -1,0 +1,934 @@
+/* Подключение шрифтов */
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@900&family=Nunito:ital,wght@0,300;0,400;0,600;0,700;1,300&display=swap');
+
+/* Переменные */
+:root {
+    /* Цветовая палитра */
+    --color-primary: #C7A17A;
+    --color-primary-dark: #A68564;
+    --color-secondary: #415167;
+    --color-dark: #151D28;
+    --color-light: #F5F5E8;
+    --color-gray: #EDF0F5;
+    --color-gray-dark: #666666;
+    --color-white: #FFFFFF;
+    
+    /* Шрифты */
+    --font-heading: 'Montserrat', sans-serif;
+    --font-body: 'Nunito', sans-serif;
+    
+    /* Размеры шрифтов */
+    --font-size-xs: 12px;
+    --font-size-sm: 14px;
+    --font-size-base: 16px;
+    --font-size-lg: 20px;
+    --font-size-xl: 24px;
+    --font-size-2xl: 30px;
+    --font-size-3xl: 54px;
+    
+    /* Отступы */
+    --spacing-xs: 5px;
+    --spacing-sm: 10px;
+    --spacing-md: 20px;
+    --spacing-lg: 30px;
+    --spacing-xl: 40px;
+    --spacing-2xl: 50px;
+    --spacing-3xl: 60px;
+    --spacing-4xl: 80px;
+    
+    /* Тени */
+    --shadow-sm: 0 2px 4px rgba(0,0,0,0.1);
+    --shadow-md: 0 2px 8px rgba(0,0,0,0.1);
+    --shadow-lg: 0 8px 25px rgba(0,0,0,0.15);
+    
+    /* Переходы */
+    --transition-fast: 0.2s ease;
+    --transition-normal: 0.3s ease;
+    --transition-slow: 0.5s ease;
+    
+    /* Границы */
+    --border-radius-sm: 4px;
+    --border-radius-md: 8px;
+    --border-radius-lg: 12px;
+}
+
+/* Сбрасываем стили */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Плавная прокрутка для всей страницы */
+html {
+    scroll-behavior: smooth;
+    scroll-padding-top: 100px;
+}
+
+/* Базовый стиль */
+body {
+    color: var(--color-dark);
+    line-height: 1.6;
+    background-color: var(--color-light);
+    font-family: var(--font-body);
+    font-weight: 400;
+    font-size: var(--font-size-base);
+    line-height: 20px;
+}
+
+/* Стандартный стиль контейнера */
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 var(--spacing-md);
+}
+
+/* Общие стили секций */
+.section {
+    padding: var(--spacing-4xl) 0;
+    animation: fadeIn 0.8s ease-out;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.bg-gray {
+    background-color: var(--color-gray);
+}
+
+.subtitle {
+    font-family: var(--font-body);
+    font-weight: 600;
+    font-size: var(--font-size-sm);
+    color: var(--color-primary);
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    margin-bottom: var(--spacing-sm);
+}
+
+.title {
+    font-family: var(--font-heading);
+    font-weight: 900;
+    font-size: var(--font-size-2xl);
+    line-height: 34px;
+    color: var(--color-dark);
+    margin-bottom: var(--spacing-md);
+}
+
+.section-title {
+    text-align: center;
+    margin-bottom: var(--spacing-2xl);
+}
+
+.btn {
+    padding: var(--spacing-sm) var(--spacing-md);
+    text-decoration: none;
+    border-radius: var(--border-radius-sm);
+    font-family: var(--font-body);
+    font-weight: 700;
+    font-size: var(--font-size-base);
+    line-height: 20px;
+    display: inline-block;
+    transition: all var(--transition-normal);
+    cursor: pointer;
+    border: 2px solid transparent;
+}
+
+.btn-primary {
+    background-color: var(--color-primary);
+    color: var(--color-white);
+    border-color: var(--color-primary);
+}
+
+.btn-primary:hover {
+    background-color: var(--color-primary-dark);
+    border-color: var(--color-primary-dark);
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-lg);
+}
+
+.btn-primary:active {
+    transform: translateY(0);
+}
+
+.btn-primary:focus {
+    outline: 2px solid var(--color-primary-dark);
+    outline-offset: 2px;
+}
+
+.btn-outline {
+    background-color: transparent;
+    border-color: var(--color-primary);
+    color: var(--color-primary);
+}
+
+.btn-outline:hover {
+    background-color: var(--color-primary);
+    color: var(--color-white);
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-lg);
+}
+
+.btn-outline:active {
+    transform: translateY(0);
+}
+
+.btn-outline:focus {
+    outline: 2px solid var(--color-primary);
+    outline-offset: 2px;
+}
+
+.btn:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+    transform: none !important;
+    box-shadow: none !important;
+}
+
+.header {
+    position: relative;
+    height: 100vh;
+    display: flex;
+    overflow: hidden;
+}
+
+/* Позиция фотографии в Секции 1 */
+.header-background {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 1;
+}
+
+.header-background img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+}
+
+.header-background img:hover {
+    transform: scale(1.05);
+    transition: transform 10s ease;
+}
+
+/* Создание цветных плашек */
+.header::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 25%;
+    height: 100%;
+    background-color: var(--color-white);
+    z-index: 2;
+}
+
+.header::after {
+    content: '';
+    position: absolute;
+    right: 0;
+    top: 0;
+    width: 25%;
+    height: 100%;
+    background-color: var(--color-secondary);
+    z-index: 2;
+}
+
+/* Создаём поверх плашек контент для заполнения элементами (Секция 0) */
+.header-content {
+    display: flex;
+    width: 100%;
+    position: relative;
+    z-index: 3;
+}
+
+/* Стиль левого контейнера (Секция 0) */
+.left-content {
+    flex: 0 0 25%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: var(--spacing-xl) var(--spacing-3xl);
+}
+
+/* Стиль правого контейнера (Секция 0) */
+.right-content {
+    flex: 0 0 25%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: var(--spacing-xl) var(--spacing-3xl);
+    align-items: center;
+    position: relative;
+}
+
+/* Создание пустого пространства между двумя контейнерами (Секция 0) */
+.banner-center {
+    flex: 1;
+}
+
+/* Стиль изображения логотипа (Секция 0) */
+.logo-img {
+    width: 150px;
+    transition: transform var(--transition-normal);
+}
+
+/* Увеличение логотипа при наведении */
+.logo-img:hover {
+    transform: scale(1.05);
+}
+
+/* Стиль лозунга (Секция 0) */
+.personalized {
+    font-family: var(--font-heading);
+    font-weight: 900;
+    font-size: var(--font-size-3xl);
+    line-height: 70px;
+    color: var(--color-dark);
+    animation: fadeInUp 1s ease-out;
+}
+
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Стиль заднего фона слова PERSONALIZED (Секция 0) */
+.personalized-bg {
+    background-color: var(--color-primary);
+    color: var(--color-white);
+    padding: var(--spacing-xs) var(--spacing-sm);
+    display: inline-block;
+    transition: all var(--transition-normal);
+}
+
+.personalized-bg:hover {
+    background-color: var(--color-primary-dark);
+    transform: scale(1.05);
+}
+
+/* Стиль расположения списка навигации (Секция 0) */
+.nav-links {
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-lg);
+    margin-top: 0;
+}
+
+/* Стиль списка навигации (Секция 0) */
+.nav-links a {
+    text-decoration: none;
+    color: var(--color-white);
+    font-weight: 700;
+    font-size: var(--font-size-xl);
+    text-align: center;
+    transition: all var(--transition-normal);
+    position: relative;
+    padding: var(--spacing-xs) 0;
+}
+
+.nav-links a::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background-color: var(--color-primary);
+    transition: width var(--transition-normal);
+}
+
+.nav-links a:hover {
+    color: var(--color-primary);
+    transform: translateX(5px);
+}
+
+.nav-links a:hover::after {
+    width: 100%;
+}
+
+.nav-links a:focus {
+    outline: 2px solid var(--color-primary);
+    outline-offset: 4px;
+    border-radius: var(--border-radius-sm);
+}
+
+/* Стиль расположения иконки тележки (Секция 0) */
+.cart-icon-large {
+    width: 50px;
+    height: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: absolute;
+    top: var(--spacing-xl);
+    left: var(--spacing-xl);
+    transition: transform var(--transition-normal);
+}
+
+/* Увеличение иконки при наведении */
+.cart-icon-large:hover {
+    transform: scale(1.1);
+}
+
+.cart-icon-large:active {
+    transform: scale(0.95);
+}
+
+/* Стиль иконки тележки (Секция 0) */
+.cart-icon-large img {
+    width: 30px;
+    height: 30px;
+    filter: brightness(0) invert(1);
+    transition: transform var(--transition-fast);
+}
+
+.cart-icon-large:hover img {
+    transform: scale(1.2);
+}
+
+.build-section {
+    background-color: var(--color-light);
+}
+
+/* Стиль матрицы особенностей (Секция 1) */
+.features-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: var(--spacing-xl);
+}
+
+/* Стиль карточки (блока) особенности (Секция 1) */
+.feature-card {
+    text-align: center;
+    padding: var(--spacing-md);
+    border-radius: var(--border-radius-md);
+    transition: all var(--transition-normal);
+    cursor: pointer;
+}
+
+.feature-card:hover {
+    transform: translateY(-10px);
+    box-shadow: var(--shadow-lg);
+    background-color: var(--color-white);
+}
+
+.feature-card:focus-within {
+    outline: 2px solid var(--color-primary);
+    outline-offset: var(--spacing-xs);
+}
+
+/* Стиль расположения иконки особенности (Секция 1) */
+.feature-icon {
+    width: 100px;
+    height: 100px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto var(--spacing-md);
+    transition: transform var(--transition-normal);
+}
+
+/* Увеличение иконки при наведении */
+.feature-card:hover .feature-icon {
+    transform: scale(1.1);
+}
+
+/* Стиль иконки особенности (Секция 1) */
+.feature-icon img {
+    width: 80px;
+    height: 80px;
+}
+
+/* Стиль заглавного текста особенности (Секция 1) */
+.feature-title {
+    margin-bottom: var(--spacing-md);
+    font-family: var(--font-body);
+    font-weight: 700;
+    font-size: var(--font-size-xl);
+    line-height: 24px;
+    color: var(--color-dark);
+}
+
+/* Стиль описания особенности (Секция 1) */
+.feature-card p {
+    color: var(--color-gray-dark);
+    line-height: 1.6;
+}
+
+.favorite-section {
+    position: relative;
+    min-height: 800px;
+    display: flex;
+    align-items: center;
+}
+
+/* Синяя плашка как псевдоэлемент (Секция 2) */
+.favorite-section::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 20%;
+    height: 100%;
+    background-color: var(--color-secondary);
+    z-index: 1;
+}
+
+/* Стиль матрицы продуктов (Секция 2) */
+.products-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: var(--spacing-xl);
+    position: relative;
+    z-index: 2;
+    width: 100%;
+}
+
+/* Стиль карточки продукта (Секция 2) */
+.product-card {
+    display: flex;
+    gap: var(--spacing-lg);
+    align-items: center;
+    background-color: var(--color-white);
+    border-radius: var(--border-radius-md);
+    overflow: hidden;
+    box-shadow: var(--shadow-md);
+    transition: all var(--transition-normal);
+}
+
+/* Поднимаем ячейку вверх при наведении */
+.product-card:hover {
+    transform: translateY(-5px);
+    box-shadow: var(--shadow-lg);
+}
+
+/* Стиль расположения изображения продукта (Секция 2) */
+.product-image {
+    width: 200px;
+    height: 200px;
+    flex-shrink: 0;
+    overflow: hidden;
+}
+
+.product-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    background-color: var(--color-gray);
+    transition: transform var(--transition-slow);
+}
+
+/* Увеличение картинки при наведении */
+.product-card:hover .product-image img {
+    transform: scale(1.1);
+}
+
+/* Стиль информации о продукте (Секция 2) */
+.product-info {
+    flex: 1;
+    padding: var(--spacing-md);
+}
+
+/* Стиль цены продукта (Секция 2) */
+.product-price {
+    font-family: var(--font-body);
+    font-weight: 600;
+    font-size: var(--font-size-lg);
+    line-height: 24px;
+    color: var(--color-primary);
+    margin-bottom: var(--spacing-sm);
+}
+
+/* Стиль названия продукта (Секция 2) */
+.product-name {
+    font-family: var(--font-body);
+    font-weight: 700;
+    font-size: var(--font-size-xl);
+    line-height: 28px;
+    margin-bottom: var(--spacing-sm);
+    color: var(--color-dark);
+    transition: color var(--transition-normal);
+}
+
+.product-card:hover .product-name {
+    color: var(--color-primary);
+}
+
+/* Стиль описания продукта (Секция 2) */
+.product-flavor {
+    color: var(--color-gray-dark);
+    font-style: italic;
+    margin-bottom: var(--spacing-md);
+}
+
+/* Стиль кнопок (Секция 2/3) */
+.product-actions {
+    display: flex;
+    gap: var(--spacing-md);
+}
+
+.giftset-section {
+    background-color: var(--color-light);
+}
+
+/* Стиль верхнего текста Гифтсета (Секция 3) */
+.giftset-header {
+    text-align: center;
+    margin-bottom: var(--spacing-2xl);
+}
+
+/* Стиль контейнера Гифтсета (Секция 3) */
+.giftset-container {
+    display: flex;
+    gap: var(--spacing-2xl);
+    align-items: center;
+}
+
+/* Гибкое масштабирование/растягивание изображения Гифтсета (Секция 3) */
+.giftset-image {
+    flex: 1;
+    overflow: hidden;
+    border-radius: var(--border-radius-md);
+}
+
+/* Увеличение картинки при наведении */
+.giftset-image:hover .giftset-img img {
+    transform: scale(1.05);
+}
+
+/* Стиль расположения изображения Гифтсета (Секция 3) */
+.giftset-img {
+    width: 100%;
+    height: 400px;
+    overflow: hidden;
+}
+
+/* Стиль изображения Гифтсета (Секция 3) */
+.giftset-img img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform var(--transition-slow);
+}
+
+/* Стиль наполнения Гифтсета (Секция 3) */
+.giftset-content {
+    flex: 1;
+}
+
+/* Стиль описания Гифтсета (Секция 3) */
+.giftset-description {
+    color: var(--color-gray-dark);
+    line-height: 1.8;
+    margin-bottom: var(--spacing-lg);
+}
+
+/* Стиль для всех характеристик (Секция 3) */
+.giftset-features {
+    display: flex;
+    gap: var(--spacing-lg);
+    margin-bottom: var(--spacing-lg);
+}
+
+/* Стиль одной характеристики (Секция 3) */
+.giftset-feature {
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-md);
+    transition: transform var(--transition-normal);
+}
+
+/* Сдвиг иконки по оси X при наведении */
+.giftset-feature:hover {
+    transform: translateX(5px);
+}
+
+/* Стиль иконок для особенностей (Секция 3) */
+.feature-icon-small {
+    width: 50px;
+    height: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: var(--color-gray);
+    border-radius: 50%;
+    transition: all var(--transition-normal);
+}
+
+.giftset-feature:hover .feature-icon-small {
+    background-color: var(--color-primary);
+}
+
+/* Стиль иконок (Секция 3) */
+.feature-icon-small img {
+    width: 30px;
+    height: 30px;
+    transition: filter var(--transition-normal);
+}
+
+.giftset-feature:hover .feature-icon-small img {
+    filter: brightness(0) invert(1);
+}
+
+/* Заглавный стиль описания особенностей (Секция 3) */
+.feature-text h4 {
+    font-family: var(--font-body);
+    font-weight: 700;
+    font-size: var(--font-size-base);
+    line-height: 20px;
+    margin-bottom: var(--spacing-xs);
+    color: var(--color-dark);
+}
+
+/* Стиль описания особенностей (Секция 3) */
+.feature-text p {
+    color: var(--color-gray-dark);
+    font-size: var(--font-size-sm);
+}
+
+.combo-section {
+    position: relative;
+    min-height: 800px;
+    display: flex;
+    align-items: center;
+}
+
+/* Синяя плашка как псевдоэлемент (Секция 4) */
+.combo-section::before {
+    content: '';
+    position: absolute;
+    right: 0;
+    top: 0;
+    width: 20%;
+    height: 100%;
+    background-color: var(--color-secondary);
+    z-index: 1;
+}
+
+/* Матрица для блоков товаров (Секция 4) */
+.combo-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: var(--spacing-lg);
+    position: relative;
+    z-index: 2;
+    width: 100%;
+}
+
+/* Блок товара (Секция 4) */
+.combo-card {
+    text-align: center;
+    padding: 0;
+    border-radius: var(--border-radius-md);
+    box-shadow: var(--shadow-md);
+    background-color: var(--color-white);
+    overflow: hidden;
+    transition: all var(--transition-normal);
+}
+
+.combo-card:hover {
+    transform: translateY(-10px);
+    box-shadow: var(--shadow-lg);
+}
+
+/* Блок с изображением товара (Секция 4) */
+.combo-image {
+    width: 100%;
+    height: 250px;
+    margin-bottom: 0;
+    overflow: hidden;
+    border-radius: var(--border-radius-md) var(--border-radius-md) 0 0;
+    background-color: var(--color-gray);
+}
+
+.combo-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    padding: var(--spacing-sm);
+    transition: transform var(--transition-slow);
+}
+
+.combo-card:hover .combo-image img {
+    transform: scale(1.1);
+}
+
+/* Ячейки товаров (Секция 4) */
+.combo-content {
+    padding: var(--spacing-md);
+}
+
+/* Ячейка цены */
+.combo-price {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: var(--spacing-sm);
+    margin-bottom: var(--spacing-md);
+}
+
+/* Стиль обычной (текущей) цены */
+.current-price {
+    font-family: var(--font-body);
+    font-weight: 600;
+    font-size: var(--font-size-lg);
+    line-height: 24px;
+    color: var(--color-primary);
+}
+
+/* Стиль перечёркнутой (старой) цены */
+.old-price {
+    font-size: var(--font-size-base);
+    color: var(--color-gray-dark);
+    text-decoration: line-through;
+}
+
+/* Стиль заглавного названия товара (Секция 4) */
+.combo-name {
+    font-family: var(--font-body);
+    font-weight: 700;
+    font-size: var(--font-size-xl);
+    line-height: 28px;
+    margin-bottom: var(--spacing-md);
+    color: var(--color-dark);
+    transition: color var(--transition-normal);
+}
+
+.combo-card:hover .combo-name {
+    color: var(--color-primary);
+}
+
+/* Стиль описания товара (Секция 4) */
+.combo-description {
+    color: var(--color-gray-dark);
+    line-height: 1.6;
+    margin-bottom: var(--spacing-md);
+    font-size: var(--font-size-sm);
+}
+
+/* Footer */
+.footer {
+    background-color: var(--color-gray);
+    color: var(--color-gray-dark);
+    text-align: center;
+    padding: var(--spacing-lg) 0;
+    transition: background-color var(--transition-normal);
+}
+
+.footer:hover {
+    background-color: var(--color-secondary);
+    color: var(--color-white);
+}
+
+@media (max-width: 1024px) {
+    .products-grid,
+    .combo-grid {
+        grid-template-columns: 1fr;
+        gap: var(--spacing-lg);
+    }
+    
+    .giftset-container {
+        flex-direction: column;
+    }
+    
+    .navigation {
+        top: 10px;
+        right: 10px;
+    }
+    
+    .navigation ul {
+        flex-direction: column;
+        gap: var(--spacing-xs);
+    }
+}
+
+@media (max-width: 768px) {
+    .header::before,
+    .header::after {
+        width: 0;
+    }
+    
+    .left-content,
+    .right-content {
+        flex: 1;
+        padding: var(--spacing-md);
+    }
+    
+    .personalized {
+        font-size: var(--font-size-2xl);
+        line-height: 1.4;
+    }
+    
+    .features-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .navigation {
+        position: static;
+        margin-top: 20px;
+        text-align: center;
+    }
+    
+    .navigation ul {
+        justify-content: center;
+    }
+}
+
+.visually-hidden {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border: 0;
+}
+
+/* Поддержка контрастности (в настройках браузера) */
+@media (prefers-contrast: high) {
+    :root {
+        --color-primary: #8B5A2B;
+        --color-dark: #000000;
+        --color-gray-dark: #333333;
+    }
+    
+    .btn {
+        border-width: 3px;
+    }
+}
+
+/* Поддержка ослабленных анимаций (в настройках браузера) */
+@media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+        scroll-behavior: auto !important;
+    }
+    
+    .header-background img:hover {
+        transform: none;
+    }
+}
