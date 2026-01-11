@@ -18,9 +18,9 @@
         
         <!-- Слой 2: Контент -->
         <div class="header-content">
-            <div class="left-content"> <!-- Левая плашка первой секции -->
+            <div class="left-content">
                 <img src="assets/img/LOGO.png" alt="Revo Coffee Logo" class="logo-img">
-                <h1 class="personalized"> <!-- Единственный h1 -->
+                <h1 class="personalized">
                     <span>YOUR</span>
                     <span><span class="personalized-bg">PERSONALIZED</span></span>
                     <span>COFFEE</span>
@@ -30,18 +30,41 @@
             <!-- Пустое пространство между контейнерами -->
             <div class="banner-center"></div>
             
-            <div class="right-content">
-                <a href="#cart" class="cart-icon-large" aria-label="Shopping cart"> <!-- Правая плашка первой секции -->
+            <!-- Элементы для десктопа -->
+            <div class="desktop-right-content">
+                <a href="#cart" class="cart-icon-large" aria-label="Shopping cart">
                     <img src="assets/icons/shopping-cart-3.png" alt="Shopping Cart Icon">
                 </a>
-                <div class="nav-links">
+                <nav class="nav-links">
                     <a href="#features">FEATURES</a>
                     <a href="#favorites">FAVORITES</a>
                     <a href="#giftset">GIFTSET</a>
                     <a href="#combo">COMBO</a>
                     <a href="#contact">CONTACT</a>
-                </div>
+                </nav>
             </div>
+            
+            <!-- Элементы для мобильных -->
+            <div class="mobile-header-controls">
+                <a href="#cart" class="cart-icon-mobile" aria-label="Shopping cart">
+                    <img src="assets/icons/shopping-cart-3.png" alt="Shopping Cart Icon">
+                </a>
+                
+                <button class="menu-toggle" id="menuToggle" aria-label="Open menu" aria-expanded="false">
+                    <span class="menu-toggle__line"></span>
+                    <span class="menu-toggle__line"></span>
+                    <span class="menu-toggle__line"></span>
+                </button>
+            </div>
+
+            <!-- Мобильное меню -->
+            <nav class="mobile-nav" id="mobileNav">
+                <a href="#features">FEATURES</a>
+                <a href="#favorites">FAVORITES</a>
+                <a href="#giftset">GIFTSET</a>
+                <a href="#combo">COMBO</a>
+                <a href="#contact">CONTACT</a>
+            </nav>
         </div>
     </header>
 
@@ -345,5 +368,8 @@
             </p>
         </div>
     </footer>
+
+    <!-- Menu -->
+    <script src="menu.js"></script>
 </body>
 </html>
